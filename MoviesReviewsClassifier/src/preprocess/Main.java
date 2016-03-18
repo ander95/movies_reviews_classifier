@@ -1,5 +1,4 @@
 package preprocess;
-import weka.core.Instance;
 import weka.core.Instances;
 
 public class Main {
