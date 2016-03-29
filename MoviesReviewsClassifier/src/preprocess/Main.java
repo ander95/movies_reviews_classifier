@@ -81,9 +81,7 @@ public class Main {
 		Instances bowAllInstances = dataFilters.getBOW(allInstances);
 		System.out.println(bowAllInstances.numInstances());
 		
-		
-		
-		//TO-DOchange allInstances by bowAllInstances when filter Works
+
 		Instances instancesDevBow = new Instances(bowAllInstances, 0, instancesDev.numInstances());
 		System.out.println(instancesDevBow.numInstances());
 		Instances instancesTrainBow = new Instances(bowAllInstances, instancesDev.numInstances(), instancesTrain.numInstances());
