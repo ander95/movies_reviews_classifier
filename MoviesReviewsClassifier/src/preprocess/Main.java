@@ -4,38 +4,50 @@ import java.util.Iterator;
 
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.pmml.jaxbbindings.Attribute;
+//import weka.core.pmml.jaxbbindings.Attribute;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		if(args.length<3){
-			System.out.println("usage: java -jar Preprocess.jar <path to arff>");
-			System.out.println("example: java -jar Preprocess.jar /tmp/file.arff");
-			System.out.println("exit with error -1");
-			System.exit(-1);
-		}
+//		if(args.length<3){
+//			System.out.println("usage: java -jar Preprocess.jar <path to arff>");
+//			System.out.println("example: java -jar Preprocess.jar /tmp/file.arff");
+//			System.out.println("exit with error -1");
+//			System.exit(-1);
+//		}
 		//args 0: dev, 1: train, 2: test_blind
 		//ArffLoader arffLoader;
-		ArffLoader arffLoader1 = new ArffLoader(args[0]);
+		
+		String path1 = "/home/ander/Escritorio/dev.arff";
+		String path2 = "/home/ander/Escritorio/train.arff";
+		String path3 = "/home/ander/Escritorio/test_blind.arff";
+		
+//		ArffLoader arffLoader1 = new ArffLoader(args[0]);
+		ArffLoader arffLoader1 = new ArffLoader(path1);
 		Instances instancesDev = arffLoader1.getData();
-		ArffLoader arffLoader2 = new ArffLoader(args[1]);
+//		ArffLoader arffLoader2 = new ArffLoader(args[1]);
+		ArffLoader arffLoader2 = new ArffLoader(path2);
 		Instances instancesTrain = arffLoader2.getData();
-		ArffLoader arffLoader3 = new ArffLoader(args[2]);
+//		ArffLoader arffLoader3 = new ArffLoader(args[2]);
+		ArffLoader arffLoader3 = new ArffLoader(path3);
 		Instances instancesTest = arffLoader3.getData();
 
 		System.out.println(instancesDev.numInstances());
 		System.out.println(instancesTrain.numInstances());
 		System.out.println(instancesTest.numInstances());
 		
-		System.out.println(instancesDev.get(0));
-		System.out.println(instancesTrain.get(0));
-		System.out.println(instancesTest.get(0));
+		System.out.println(instancesDev.instance(0));
+		System.out.println(instancesTrain.instance(0));
+		System.out.println(instancesTest.instance(0));
+		
+//		System.out.println(instancesDev.get(0));
+//		System.out.println(instancesTrain.get(0));
+//		System.out.println(instancesTest.get(0));
 		
 		
-		Instances allInstances = new Instances(instancesDev);
-		allInstances.addAll(instancesTrain);
-		allInstances.addAll(instancesTest);
+//		Instances allInstances = new Instances(instancesDev);
+//		allInstances.addAll(instancesTrain);
+//		allInstances.addAll(instancesTest);
 		/*
 		System.out.println(allInstances.get(400));
 		//'the kids
@@ -63,19 +75,24 @@ public class Main {
 			allInstances.add(iteratortest.next());
 		}*/
 		
-		/*Instances allInstances = new Instances(instancesDev);
+		Instances allInstances = new Instances(instancesDev);
 		for (int i=0; i < instancesTrain.numInstances(); i++){
-			//allInstances.add(instancesTrain.instance(i));
-			allInstances.add(instancesTrain.get(i));
+			allInstances.add(instancesTrain.instance(i));
+//			allInstances.add(instancesTrain.get(i));
 		}
 		for (int i=0; i < instancesTest.numInstances(); i++){
-			//allInstances.add(instancesTest.instance(i));
-			allInstances.add(instancesTest.get(i));
-		}*/
+			allInstances.add(instancesTest.instance(i));
+//			allInstances.add(instancesTest.get(i));
+		}
 		System.out.println("allInstances: "+allInstances.numInstances());
-		System.out.println(allInstances.get(0));
-		System.out.println(allInstances.get(400));
-		System.out.println(allInstances.get(1600));
+		
+		System.out.println(allInstances.instance(0));
+		System.out.println(allInstances.instance(400));
+		System.out.println(allInstances.instance(1600));
+		
+//		System.out.println(allInstances.get(0));
+//		System.out.println(allInstances.get(400));
+//		System.out.println(allInstances.get(1600));
 		
 		DataFilters dataFilters = new DataFilters();
 		Instances bowAllInstances = dataFilters.getBOW(allInstances);
