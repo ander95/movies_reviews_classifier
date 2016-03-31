@@ -12,6 +12,7 @@ public class Main {
 		}
 		ArffLoader arffLoader = new ArffLoader(args[0]);
 		Instances instances = arffLoader.getData();
-		
+		DataFilters filter =new DataFilters();
+		filter.getBOW(instances);
 	}	
 }
