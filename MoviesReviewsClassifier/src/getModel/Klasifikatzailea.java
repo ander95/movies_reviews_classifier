@@ -29,7 +29,7 @@ public class Klasifikatzailea {
 			SerializationHelper.write(path, getClassifier());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 }
