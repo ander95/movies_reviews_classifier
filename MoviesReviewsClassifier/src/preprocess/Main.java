@@ -29,7 +29,7 @@ public class Main {
 		Instances instancesTrainBow = new Instances(bowAllInstances, 400, 1200);
 		Instances instancesTestBow = new Instances(bowAllInstances, 1600, 400);
 		
-		ArffGorde gordeallBOW = new ArffGorde(instancesDevBow, args[0].replace(".arff", "BOW.arff"));
+		ArffGorde gordeallBOW = new ArffGorde(bowAllInstances, args[0].replace(".arff", "BOW.arff"));
 		gordeallBOW.gorde();
 		ArffGorde gordedev = new ArffGorde(instancesDevBow, args[1]);
 		gordedev.gorde();

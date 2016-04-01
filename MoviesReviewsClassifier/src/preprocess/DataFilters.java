@@ -23,7 +23,7 @@ public class DataFilters {
 	
 	
 	public Instances getBOW(Instances data) {
-		StringToWordVector bow =new StringToWordVector();
+		StringToWordVector bow =new StringToWordVector();			
 		bow.setLowerCaseTokens(true);
 		bow.setOutputWordCounts(true);
 		bow.setAttributeIndices("1");
