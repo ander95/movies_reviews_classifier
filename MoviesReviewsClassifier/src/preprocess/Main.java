@@ -24,6 +24,9 @@ public class Main {
 		
 		DataFilters dataFilters = new DataFilters();
 		Instances bowAllInstances = dataFilters.getBOW(allInstances);
+		
+		GainAttributeEval fil = new GainAttributeEval();
+		bowAllInstances = fil.gainEval(bowAllInstances);
 
 		Instances instancesDevBow = new Instances(bowAllInstances, 0, 400);
 		Instances instancesTrainBow = new Instances(bowAllInstances, 400, 1200);

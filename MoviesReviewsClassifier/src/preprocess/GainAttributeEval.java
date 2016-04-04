@@ -12,7 +12,7 @@ public class GainAttributeEval {
 		
 	}
 	
-	private Instances gainEval(Instances data){
+	public Instances gainEval(Instances data){
 		AttributeSelection filter = new AttributeSelection();
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		Ranker search = new Ranker();
