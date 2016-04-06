@@ -24,12 +24,11 @@ public class Main {
 		
 		DataFilters dataFilters = new DataFilters();
 		Instances bowAllInstances = dataFilters.getBOW(allInstances);
+		//bowAllInstances = dataFilters.getGainAttributeEval(bowAllInstances);
+		Instances bowAllInstancesGainAttributeEval = dataFilters.getGainAttributeEval(new Instances(bowAllInstances, 0, 1600));
 		
-		GainAttributeEval fil = new GainAttributeEval();
-		bowAllInstances = fil.gainEval(bowAllInstances);
-
-		Instances instancesDevBow = new Instances(bowAllInstances, 0, 400);
-		Instances instancesTrainBow = new Instances(bowAllInstances, 400, 1200);
+		Instances instancesDevBow = new Instances(bowAllInstancesGainAttributeEval, 0, 400);
+		Instances instancesTrainBow = new Instances(bowAllInstancesGainAttributeEval, 400, 1200);
 		Instances instancesTestBow = new Instances(bowAllInstances, 1600, 400);
 		
 		ArffGorde gordeallBOW = new ArffGorde(bowAllInstances, args[0].replace(".arff", "BOW.arff"));

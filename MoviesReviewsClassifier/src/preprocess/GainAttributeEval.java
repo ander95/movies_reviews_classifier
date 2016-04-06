@@ -18,6 +18,13 @@ public class GainAttributeEval {
 		Ranker search = new Ranker();
 		double param = 0.0;
 		search.setThreshold(param);
+		try {
+			filter.setInputFormat(data);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//filter.setAttributeIndices("1");
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
 		Instances newData = null;

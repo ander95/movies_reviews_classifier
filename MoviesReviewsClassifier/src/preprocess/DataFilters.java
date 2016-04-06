@@ -1,6 +1,11 @@
 package preprocess;
+import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.GreedyStepwise;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
 import weka.core.Instances;
 import weka.filters.Filter;
+import weka.filters.supervised.attribute.AttributeSelection;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class DataFilters {
@@ -27,7 +32,6 @@ public class DataFilters {
 		try {
 			bow.setIDFTransform(false);
 			bow.setTFTransform(false);
-			bow.setInputFormat(data);
 			bow.setLowerCaseTokens(true);
 			bow.setOutputWordCounts(true);
 			bow.setAttributeIndices("1");
@@ -37,6 +41,27 @@ public class DataFilters {
 			e.printStackTrace();
 		}
 		return applyFilter(bow, data);
+	}
+	
+	public Instances getGainAttributeEval(Instances data){
+		/*AttributeSelection filter = new AttributeSelection();
+		InfoGainAttributeEval eval = new InfoGainAttributeEval();
+		Ranker search = new Ranker();
+		double param = 0.0;
+		search.setThreshold(param);
+		filter.setEvaluator(eval);
+		filter.setSearch(search);*/
+		AttributeSelection filter = new AttributeSelection();
+		InfoGainAttributeEval eval = new InfoGainAttributeEval();
+		Ranker search = new Ranker();
+		//search.setNumToSelect(-1);
+		search.setNumToSelect(1000);
+		search.setThreshold(-1.8);
+		filter.setEvaluator(eval);
+		filter.setSearch(search);
+		
+		
+		return applyFilter(filter, data);
 	}
 	
 	
