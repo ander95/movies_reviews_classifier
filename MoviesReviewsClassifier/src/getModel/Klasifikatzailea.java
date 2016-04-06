@@ -8,10 +8,17 @@ import weka.core.SerializationHelper;
 public class Klasifikatzailea {
 
 	private Bagging klasifikatzailea;
-	public Klasifikatzailea(Instances data, int numIterations){
+	public Klasifikatzailea(Instances data, int numIterations, int bagSizePercent, boolean bagError, boolean representUsingWeights){
 		try {
 			klasifikatzailea.setSeed(1);
+			//number of bagging iterations mayor que 1
 			klasifikatzailea.setNumIterations(numIterations);
+			//tamaño en porcentage de cada bolsa de baggin 1-100
+			klasifikatzailea.setBagSizePercent(bagSizePercent);
+			//permitir calcular error de quedarse fuera de la bolsa true-false
+			klasifikatzailea.setCalcOutOfBag(bagError);
+			//permitir tener mal copias de instancias que instancias reales
+			klasifikatzailea.setRepresentCopiesUsingWeights(representUsingWeights);
 			//TODO
 			String[] optionsBagging = {};
 			klasifikatzailea.setOptions(optionsBagging);
