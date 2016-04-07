@@ -28,11 +28,15 @@ public class Main {
 		//bowAllInstances = dataFilters.getGainAttributeEval(bowAllInstances);
 		Instances bowAllInstancesGainAttributeEval = dataFilters.getGainAttributeEval(new Instances(bowAllInstances, 0, 1600));
 		
+		System.out.println(bowAllInstancesGainAttributeEval.numAttributes());
+		
 		for(int i = bowAllInstances.numAttributes()-1; i>0;i--){
 			boolean contains = false;
-			for (int e = 0; e<bowAllInstancesGainAttributeEval.numAttributes();e++){
+			for (int e = 0; e<bowAllInstancesGainAttributeEval.numAttributes() && !contains;e++){
+				System.out.println(bowAllInstancesGainAttributeEval.attribute(e));
 				if(bowAllInstancesGainAttributeEval.attribute(e).equals(bowAllInstances.attribute(i))){
 					contains = true;
+					System.out.println(i+": "+e);
 				}
 			}
 			if(contains==false){

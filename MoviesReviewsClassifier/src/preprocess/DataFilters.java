@@ -83,8 +83,9 @@ public class DataFilters {
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		Ranker search = new Ranker();
 		//search.setNumToSelect(-1);
-		search.setNumToSelect(1000);
-		search.setThreshold(-1.8);
+//		search.setNumToSelect(1000);
+		search.setNumToSelect(5);
+		search.setThreshold(0.0);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
 
