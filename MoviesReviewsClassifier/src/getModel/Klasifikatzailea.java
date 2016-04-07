@@ -19,7 +19,7 @@ public class Klasifikatzailea {
 			//permitir calcular error de quedarse fuera de la bolsa true-false
 			klasifikatzailea.setCalcOutOfBag(bagError);
 			//permitir tener mal copias de instancias que instancias reales
-			klasifikatzailea.setRepresentCopiesUsingWeights(representUsingWeights);
+//			klasifikatzailea.setRepresentCopiesUsingWeights(representUsingWeights);
 			//TODO
 			String[] optionsBagging = {};
 			klasifikatzailea.setOptions(optionsBagging);
