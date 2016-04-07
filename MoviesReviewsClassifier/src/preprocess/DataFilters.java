@@ -71,7 +71,7 @@ public class DataFilters {
 	}
 
 
-	public Instances getGainAttributeEval(Instances data){
+	public Instances[] getGainAttributeEval(Instances train, Instances test){
 		/*AttributeSelection filter = new AttributeSelection();
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		Ranker search = new Ranker();
@@ -79,18 +79,33 @@ public class DataFilters {
 		search.setThreshold(param);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);*/
+		Instances[] inst = new Instances[2];
+		
 		AttributeSelection filter = new AttributeSelection();
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		Ranker search = new Ranker();
 		//search.setNumToSelect(-1);
 //		search.setNumToSelect(1000);
-		search.setNumToSelect(5);
+//		search.setNumToSelect(5);
 		search.setThreshold(0.0);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
+		
+		Instances newTrain = null;
+		Instances newTest = null;
+		
+		try {
+			filter.setInputFormat(train);
+			newTrain = Filter.useFilter(train, filter);
+			newTest = Filter.useFilter(test, filter);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		inst[0] = newTrain;
+		inst[1] = newTest;
 
-
-		return applyFilter(filter, data);
+		return inst;
 	}
 
 
