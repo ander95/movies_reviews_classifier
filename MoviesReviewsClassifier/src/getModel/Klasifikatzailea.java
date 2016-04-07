@@ -2,6 +2,7 @@ package getModel;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.meta.Bagging;
+import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
 
@@ -22,6 +23,7 @@ public class Klasifikatzailea {
 			//TODO
 			String[] optionsBagging = {};
 			klasifikatzailea.setOptions(optionsBagging);
+			klasifikatzailea.setClassifier(new J48());
 			klasifikatzailea.buildClassifier(data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
