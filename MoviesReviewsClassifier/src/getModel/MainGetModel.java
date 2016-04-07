@@ -42,15 +42,17 @@ public class MainGetModel {
 		double fMeasureMax=0;
 		double fMeasure=0;
 		for (int numIterations = 1; numIterations < 20; numIterations++) {
+
 			for (int bagSizePercent = 100; bagSizePercent > 0; bagSizePercent = bagSizePercent-10) {
-				System.out.println(numIterations);
+				//System.out.println(numIterations);
 				System.out.println(bagSizePercent);
-				klasifikatzailea = new Klasifikatzailea(instancesTrain, numIterations, bagSizePercent, bagError, representUsingWeights);
+				//klasifikatzailea = new Klasifikatzailea(instancesTrain, numIterations, bagSizePercent, bagError, representUsingWeights);
+				klasifikatzailea = new Klasifikatzailea(instancesTrain, 10, bagSizePercent, bagError, representUsingWeights);
 				est= klasifikatzailea.getClassifier();
 				try {
 					evaluator = new Evaluation(instancesTrain);
 					if(args[3].equals("1")){
-					evaluator.crossValidateModel(est, instancesTrain, 10, new Random(1));
+						evaluator.crossValidateModel(est, instancesTrain, 10, new Random(1));
 					}else{
 						evaluator.evaluateModel(est, instancesDev);
 					}
@@ -58,20 +60,25 @@ public class MainGetModel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				fMeasure=evaluator.fMeasure(0);
+				//fMeasure=evaluator.fMeasure(0);
+				fMeasure=evaluator.weightedFMeasure();
 				//			fMeasure=evaluator.fMeasure(0);
 				if (fMeasureMax <fMeasure){
 					fMeasureMax=fMeasure;
 					klasifikatzaileOnena=klasifikatzailea;
 					System.out.println("fMeasure: "+fMeasureMax);
-					System.out.println("numIterations: "+numIterations);
+					//System.out.println("numIterations: "+numIterations);
 					System.out.println("bagSizePercent: "+bagSizePercent);
 					System.out.println("================================================");
+				}else{
+					System.out.println("fMeasureNO: "+fMeasureMax);
+					//System.out.println("numIterations: "+numIterations);
+					System.out.println("bagSizePercentNO: "+bagSizePercent);
+					System.out.println("================================================");
 				}
-				
 			}
 		}
-		
+
 		//klasifikatzailea gorde
 		klasifikatzaileOnena.save(args[2]);
 	}

@@ -23,19 +23,18 @@ public class Klasifikatzailea {
 			//permitir calcular error de quedarse fuera de la bolsa true-false
 			klasifikatzailea.setCalcOutOfBag(bagError);
 			//permitir tener mal copias de instancias que instancias reales
-			klasifikatzailea.setRepresentCopiesUsingWeights(representUsingWeights);
-			//TODO
-			String[] optionsBagging = {};
-			klasifikatzailea.setOptions(optionsBagging);
+			//klasifikatzailea.setRepresentCopiesUsingWeights(representUsingWeights);
+			//String[] optionsBagging = {};
+			//klasifikatzailea.setOptions(optionsBagging);
 			klasifikatzailea.setClassifier(new J48());
 			klasifikatzailea.buildClassifier(data);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	public Classifier getClassifier(){
-		return klasifikatzailea.getClassifier();
+		//return klasifikatzailea.getClassifier();
+		return klasifikatzailea;
 	}
 	public void save(String path){
 		try {
@@ -46,7 +45,7 @@ public class Klasifikatzailea {
 		}
 	}
 
-	public void parametroEkorketa(Instances trainData) {
+	/*public void parametroEkorketa(Instances trainData) {
 		Bagging est=(Bagging) this.getClassifier();
 		int kMax=0;
 		Evaluation evaluator=null;
@@ -70,5 +69,5 @@ public class Klasifikatzailea {
 				}
 			}
 		}
-	}
+	}*/
 }
