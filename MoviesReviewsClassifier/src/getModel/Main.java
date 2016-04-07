@@ -26,7 +26,10 @@ public class Main {
 		
 		//ekortu behar den zenbakia numIterations by default 10
 		int numIterations = 10;
-		Klasifikatzailea klasifikatzailea = new Klasifikatzailea(instancesDev, numIterations);
+		int bagSizePercent = 10;
+		boolean bagError = false;
+		boolean representUsingWeights = false;
+		Klasifikatzailea klasifikatzailea = new Klasifikatzailea(instancesDev, numIterations, bagSizePercent, bagError, representUsingWeights);
 		
 		
 		
