@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.filters.unsupervised.attribute.Remove;
 //import weka.core.pmml.jaxbbindings.Attribute;
 
 public class Main {
@@ -27,8 +28,24 @@ public class Main {
 		//bowAllInstances = dataFilters.getGainAttributeEval(bowAllInstances);
 		Instances bowAllInstancesGainAttributeEval = dataFilters.getGainAttributeEval(new Instances(bowAllInstances, 0, 1600));
 		
-		Instances instancesDevBow = new Instances(bowAllInstancesGainAttributeEval, 0, 400);
+		for(int i = bowAllInstances.numAttributes()-1; i>0;i--){
+			boolean contains = false;
+			for (int e = 0; e<bowAllInstancesGainAttributeEval.numAttributes();e++){
+				if(bowAllInstancesGainAttributeEval.attribute(e).equals(bowAllInstances.attribute(i))){
+					contains = true;
+				}
+			}
+			if(contains==false){
+				bowAllInstances = dataFilters.remove(i, bowAllInstances);
+			}
+		}
+		
+		/*Instances instancesDevBow = new Instances(bowAllInstancesGainAttributeEval, 0, 400);
 		Instances instancesTrainBow = new Instances(bowAllInstancesGainAttributeEval, 400, 1200);
+		Instances instancesTestBow = new Instances(bowAllInstances, 1600, 400);*/
+		
+		Instances instancesDevBow = new Instances(bowAllInstances, 0, 400);
+		Instances instancesTrainBow = new Instances(bowAllInstances, 400, 1200);
 		Instances instancesTestBow = new Instances(bowAllInstances, 1600, 400);
 		
 		ArffGorde gordeallBOW = new ArffGorde(bowAllInstances, args[0].replace(".arff", "BOW.arff"));

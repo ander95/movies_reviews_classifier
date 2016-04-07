@@ -6,6 +6,7 @@ import weka.attributeSelection.Ranker;
 import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
+import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class DataFilters {
@@ -41,6 +42,12 @@ public class DataFilters {
 			e.printStackTrace();
 		}
 		return applyFilter(bow, data);
+	}
+	
+	public Instances remove(int i, Instances data){
+		Remove remove = new Remove();
+		remove.setAttributeIndices(Integer.toString(i));
+		return applyFilter(remove, data);
 	}
 	
 	public Instances getGainAttributeEval(Instances data){
