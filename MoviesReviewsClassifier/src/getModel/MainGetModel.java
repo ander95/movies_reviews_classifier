@@ -8,14 +8,15 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.meta.Bagging;
 import weka.core.Instances;
 
-public class Main {
+public class MainGetModel {
 
 	public static void main(String[] args) {
-		//args0 = dev, args1 = train and args2 = pth to save the model
-		if(args.length<3){
-			System.out.println("usage: TODO");
+		//args0 = dev, args1 = train, args2 = pth to save the model, args3 =mode 1 k 2 trainvstest
+		if(args.length<4){
+			System.out.println("usage: train dev model");
 			System.out.println("example: TODO");
 			System.out.println("exit with error -1");
+			System.out.println(args.length);
 			System.exit(-1);
 		}
 		
@@ -41,14 +42,18 @@ public class Main {
 		double fMeasureMax=0;
 		double fMeasure=0;
 		for (int numIterations = 1; numIterations < 20; numIterations++) {
-			for (int bagSizePercent = 100; bagSizePercent > 0; bagSizePercent--) {
+			for (int bagSizePercent = 100; bagSizePercent > 0; bagSizePercent = bagSizePercent-10) {
 				System.out.println(numIterations);
 				System.out.println(bagSizePercent);
 				klasifikatzailea = new Klasifikatzailea(instancesTrain, numIterations, bagSizePercent, bagError, representUsingWeights);
 				est= klasifikatzailea.getClassifier();
 				try {
 					evaluator = new Evaluation(instancesTrain);
+					if(args[3].equals("1")){
 					evaluator.crossValidateModel(est, instancesTrain, 10, new Random(1));
+					}else{
+						evaluator.evaluateModel(est, instancesDev);
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -58,6 +63,10 @@ public class Main {
 				if (fMeasureMax <fMeasure){
 					fMeasureMax=fMeasure;
 					klasifikatzaileOnena=klasifikatzailea;
+					System.out.println("fMeasure: "+fMeasureMax);
+					System.out.println("numIterations: "+numIterations);
+					System.out.println("bagSizePercent: "+bagSizePercent);
+					System.out.println("================================================");
 				}
 				
 			}
