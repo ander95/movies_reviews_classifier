@@ -12,10 +12,10 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 public class DataFilters {
 
 	public DataFilters() {
-		
+
 	}
-	
-	
+
+
 	private Instances applyFilter(Filter filter, Instances data) {
 		try {
 			filter.setInputFormat(data);
@@ -26,8 +26,8 @@ public class DataFilters {
 		}
 		return data;
 	}	
-	
-	
+
+
 	public Instances getBOW(Instances data) {
 		StringToWordVector bow =new StringToWordVector();
 		try {
@@ -43,6 +43,7 @@ public class DataFilters {
 		}
 		return applyFilter(bow, data);
 	}
+
 	
 	public Instances remove(int i, Instances data){
 		Remove remove = new Remove();
@@ -50,6 +51,26 @@ public class DataFilters {
 		return applyFilter(remove, data);
 	}
 	
+
+
+	public Instances fssTFIFD(Instances data){
+
+		StringToWordVector bow = new StringToWordVector();
+		try {
+			bow.setIDFTransform(true);
+			bow.setTFTransform(true);
+			bow.setLowerCaseTokens(true);
+			bow.setOutputWordCounts(true);
+			bow.setAttributeIndices("1");
+			bow.setWordsToKeep(2000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return applyFilter(bow, data);
+	}
+
+
 	public Instances getGainAttributeEval(Instances data){
 		/*AttributeSelection filter = new AttributeSelection();
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
@@ -66,12 +87,12 @@ public class DataFilters {
 		search.setThreshold(-1.8);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
-		
-		
+
+
 		return applyFilter(filter, data);
 	}
-	
-	
-	
-	
+
+
+
+
 }
