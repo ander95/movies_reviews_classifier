@@ -1,7 +1,11 @@
 package getModel;
 
+import java.util.Random;
+
 import preprocess.ArffLoader;
 import weka.classifiers.Classifier;
+import weka.classifiers.Evaluation;
+import weka.classifiers.meta.Bagging;
 import weka.core.Instances;
 
 public class Main {
@@ -25,13 +29,39 @@ public class Main {
 		Klasifikatzailea klasifikatzaileOnena = null;
 		
 		//ekortu behar den zenbakia numIterations by default 10
-		int numIterations = 10;
-		int bagSizePercent = 10;
+//		int numIterations = 10;
+//		int bagSizePercent = 10;
 		boolean bagError = false;
 		boolean representUsingWeights = false;
-		Klasifikatzailea klasifikatzailea = new Klasifikatzailea(instancesDev, numIterations, bagSizePercent, bagError, representUsingWeights);
+		Klasifikatzailea klasifikatzailea;
 		
-		
+		//parametroak ekortu
+		Classifier est;
+		Evaluation evaluator=null;
+		double fMeasureMax=0;
+		double fMeasure=0;
+		for (int numIterations = 1; numIterations < 20; numIterations++) {
+			for (int bagSizePercent = 100; bagSizePercent > 0; bagSizePercent--) {
+				System.out.println(numIterations);
+				System.out.println(bagSizePercent);
+				klasifikatzailea = new Klasifikatzailea(instancesTrain, numIterations, bagSizePercent, bagError, representUsingWeights);
+				est= klasifikatzailea.getClassifier();
+				try {
+					evaluator = new Evaluation(instancesTrain);
+					evaluator.crossValidateModel(est, instancesTrain, 10, new Random(1));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fMeasure=evaluator.fMeasure(0);
+				//			fMeasure=evaluator.fMeasure(0);
+				if (fMeasureMax <fMeasure){
+					fMeasureMax=fMeasure;
+					klasifikatzaileOnena=klasifikatzailea;
+				}
+				
+			}
+		}
 		
 		//klasifikatzailea gorde
 		klasifikatzaileOnena.save(args[2]);

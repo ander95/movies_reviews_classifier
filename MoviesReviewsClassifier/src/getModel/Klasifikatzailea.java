@@ -13,6 +13,8 @@ public class Klasifikatzailea {
 	private Bagging klasifikatzailea;
 	public Klasifikatzailea(Instances data, int numIterations, int bagSizePercent, boolean bagError, boolean representUsingWeights){
 		try {
+			klasifikatzailea=new Bagging();
+			data.setClassIndex(0);
 			klasifikatzailea.setSeed(1);
 			//number of bagging iterations mayor que 1
 			klasifikatzailea.setNumIterations(numIterations);
