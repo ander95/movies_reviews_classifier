@@ -30,17 +30,26 @@ public class Main {
 		
 		System.out.println(bowAllInstancesGainAttributeEval.numAttributes());
 		
-		for(int i = bowAllInstances.numAttributes()-1; i>0;i--){
+		for (int i = 0; i<bowAllInstancesGainAttributeEval.numAttributes();i++){
+			System.out.println(bowAllInstancesGainAttributeEval.attribute(i));
+		}
+		
+		
+		System.out.println(bowAllInstances.attribute(0).name());
+		
+		for(int i = bowAllInstances.numAttributes()-1; i>=0;i--){
 			boolean contains = false;
+			
 			for (int e = 0; e<bowAllInstancesGainAttributeEval.numAttributes() && !contains;e++){
-				System.out.println(bowAllInstancesGainAttributeEval.attribute(e));
-				if(bowAllInstancesGainAttributeEval.attribute(e).equals(bowAllInstances.attribute(i))){
+				//System.out.println(bowAllInstancesGainAttributeEval.attribute(e));
+				//System.out.println(bowAllInstancesGainAttributeEval.attribute(e).name().toString()+bowAllInstances.attribute(i).name().toString());
+				if(bowAllInstancesGainAttributeEval.attribute(e).name().toString().equals(bowAllInstances.attribute(i).name().toString())){
 					contains = true;
 					System.out.println(i+": "+e);
 				}
 			}
 			if(contains==false){
-				bowAllInstances = dataFilters.remove(i, bowAllInstances);
+				bowAllInstances = dataFilters.remove(i+1, bowAllInstances);
 			}
 		}
 		

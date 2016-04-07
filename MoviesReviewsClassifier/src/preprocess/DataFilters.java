@@ -85,7 +85,8 @@ public class DataFilters {
 		//search.setNumToSelect(-1);
 //		search.setNumToSelect(1000);
 		search.setNumToSelect(5);
-		search.setThreshold(0.0);
+		//search.setThreshold(0.0);
+		search.setThreshold(0.5);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
 
