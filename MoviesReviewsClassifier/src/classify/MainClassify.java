@@ -5,7 +5,7 @@ import weka.classifiers.Classifier;
 import weka.core.Instances;
 
 //https://stackoverflow.com/questions/20017957/how-to-reuse-saved-classifier-created-from-explorerin-weka-in-eclipse-java
-public class Main {
+public class MainClassify {
 
 	public static void main(String[] args) {
 		//args0 = dev, args1 = train and args2 = pth to save the model
