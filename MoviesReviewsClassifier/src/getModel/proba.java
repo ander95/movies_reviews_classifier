@@ -44,8 +44,8 @@ public class proba {
 		}
 		
 		System.out.println("Parametro egokienak:\nBagSizePercent: "+param[0]+"\nCalcOutOfBag: "+param[1]);
-		System.out.println(cls);
-		System.out.println(eval.toSummaryString());
+		System.out.println(cls); //zuhaitzak inprimatu
+		System.out.println(eval.toSummaryString());  
 		try {
 			System.out.println(eval.toClassDetailsString());
 			System.out.println(eval.toMatrixString());
@@ -94,6 +94,7 @@ public class proba {
 			}
 			ehunekoa++;
 		}
+		ehunekoa--;
 		bag.setCalcOutOfBag(true);
 		cls = bag;
 		eval = null;
