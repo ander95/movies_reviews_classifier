@@ -38,7 +38,6 @@ public class DataFilters {
 			bow.setAttributeIndices("1");
 			bow.setWordsToKeep(2000);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return applyFilter(bow, data);
@@ -64,7 +63,6 @@ public class DataFilters {
 			bow.setAttributeIndices("1");
 			bow.setWordsToKeep(2000);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return applyFilter(bow, data);
@@ -72,21 +70,12 @@ public class DataFilters {
 
 
 	public Instances getGainAttributeEval(Instances data){
-		/*AttributeSelection filter = new AttributeSelection();
-		InfoGainAttributeEval eval = new InfoGainAttributeEval();
-		Ranker search = new Ranker();
-		double param = 0.0;
-		search.setThreshold(param);
-		filter.setEvaluator(eval);
-		filter.setSearch(search);*/
+
 		AttributeSelection filter = new AttributeSelection();
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		Ranker search = new Ranker();
-		//search.setNumToSelect(-1);
-//		search.setNumToSelect(1000);
-		search.setNumToSelect(5);
-		//search.setThreshold(0.0);
-		search.setThreshold(0.5);
+
+		search.setThreshold(0.0);
 		filter.setEvaluator(eval);
 		filter.setSearch(search);
 

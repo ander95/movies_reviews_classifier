@@ -19,7 +19,6 @@ public class ArffGorde {
 				 saver.setInstances(data);
 				 try {
 					saver.setFile(new File(path));
-					//saver.setDestination(new File(path));   // **not** necessary in 3.5.4 and later
 					 saver.writeBatch();
 				} catch (IOException e) {
 					e.printStackTrace();

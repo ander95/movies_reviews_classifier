@@ -25,7 +25,6 @@ public class Main {
 		
 		DataFilters dataFilters = new DataFilters();
 		Instances bowAllInstances = dataFilters.getBOW(allInstances);
-		//bowAllInstances = dataFilters.getGainAttributeEval(bowAllInstances);
 		Instances bowAllInstancesGainAttributeEval = dataFilters.getGainAttributeEval(new Instances(bowAllInstances, 0, 1600));
 		
 		System.out.println(bowAllInstancesGainAttributeEval.numAttributes());
@@ -41,8 +40,6 @@ public class Main {
 			boolean contains = false;
 			
 			for (int e = 0; e<bowAllInstancesGainAttributeEval.numAttributes() && !contains;e++){
-				//System.out.println(bowAllInstancesGainAttributeEval.attribute(e));
-				//System.out.println(bowAllInstancesGainAttributeEval.attribute(e).name().toString()+bowAllInstances.attribute(i).name().toString());
 				if(bowAllInstancesGainAttributeEval.attribute(e).name().toString().equals(bowAllInstances.attribute(i).name().toString())){
 					contains = true;
 					System.out.println(i+": "+e);
@@ -53,9 +50,6 @@ public class Main {
 			}
 		}
 		
-		/*Instances instancesDevBow = new Instances(bowAllInstancesGainAttributeEval, 0, 400);
-		Instances instancesTrainBow = new Instances(bowAllInstancesGainAttributeEval, 400, 1200);
-		Instances instancesTestBow = new Instances(bowAllInstances, 1600, 400);*/
 		
 		Instances instancesDevBow = new Instances(bowAllInstances, 0, 400);
 		Instances instancesTrainBow = new Instances(bowAllInstances, 400, 1200);
