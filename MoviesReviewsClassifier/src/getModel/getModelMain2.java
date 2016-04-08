@@ -7,7 +7,7 @@ import weka.classifiers.meta.Bagging;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 
-public class proba {
+public class getModelMain2 {
 
 	public static void main(String[] args) {
 		//args0 = dev, args1 = train
