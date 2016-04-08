@@ -23,7 +23,6 @@ public class ArffLoader {
 	    // 1.2. Open the file
 	    FileReader fi=null;
 		try {
-			///home/endika/weka-3-6-13/data/breast-cancer.arff
 			fi= new FileReader(path);
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: Revisar path del fichero de datos: "+path);
@@ -40,10 +39,7 @@ public class ArffLoader {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		// 1.5. Shuffle the instances: apply Randomize filter
-		//  HACER!!!!
-		//int randomInt = (int) (10.0 * Math.random()) + 2;
-		//data.randomize(new Random(randomInt));
+		
 
 		// 1.6. Specify which attribute will be used as the class: the last one, in this case 
 		data.setClassIndex(data.numAttributes()-1);
