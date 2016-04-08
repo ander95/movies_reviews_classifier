@@ -62,11 +62,8 @@ public class MainGetModel {
 					fMeasureMax=fMeasure;
 					klasifikatzaileOnena=klasifikatzailea;
 					System.out.println("fMeasure: "+fMeasureMax);
+					System.out.println("numIterations: " + numIterations);
 					System.out.println("bagSizePercent: "+bagSizePercent);
-					System.out.println("================================================");
-				}else{
-					System.out.println("fMeasureNO: "+fMeasureMax);
-					System.out.println("bagSizePercentNO: "+bagSizePercent);
 					System.out.println("================================================");
 				}
 			}
