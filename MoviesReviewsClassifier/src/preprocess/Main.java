@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		if(args.length<4){
-			System.out.println("usage: java -jar Preprocess.jar <path to arff>");
-			System.out.println("example: java -jar Preprocess.jar /tmp/file.arff");
+			System.out.println("usage: java -jar Preprocess.jar <path to alldata> <end path to dev> <end path to train> <end path to test> ");
+			System.out.println("example: java -jar Preprocess.jar /tmp/alldata.arff ./dev.arff ./train.arff ./test.arff");
 			System.out.println("exit with error -1");
 			System.exit(-1);
 		}
