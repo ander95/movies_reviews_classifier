@@ -8,10 +8,10 @@ import weka.core.Instances;
 public class MainClassify {
 
 	public static void main(String[] args) {
-		//args0 = dev, args1 = train and args2 = pth to save the model
+		//args0 = model, args1 = test
 		if(args.length<2){
-			System.out.println("usage: TODO");
-			System.out.println("example: TODO");
+			System.out.println("usage: java -jar classify.jar <path to model> <path to test file>");
+			System.out.println("example: java -jar classify.jar ./model.model ./testp.arff");
 			System.out.println("exit with error -1");
 			System.exit(-1);
 		}

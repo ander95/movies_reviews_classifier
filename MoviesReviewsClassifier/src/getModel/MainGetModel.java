@@ -13,8 +13,8 @@ public class MainGetModel {
 	public static void main(String[] args) {
 		//args0 = dev, args1 = train, args2 = pth to save the model, args3 =mode 1 k 2 trainvstest
 		if(args.length<4){
-			System.out.println("usage: train dev model");
-			System.out.println("example: TODO");
+			System.out.println("usage: java -jar getModel.jar <path to preprocess dev output file> <path to preprocess train output file> <path to model output> <mode: 1 crossValidate, 2 train vs test>");
+			System.out.println("example: java -jar getModel.jar ./devp.arff ./trainp.arff ./model.model 2");
 			System.out.println("exit with error -1");
 			System.out.println(args.length);
 			System.exit(-1);
